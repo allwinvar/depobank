@@ -1,0 +1,316 @@
+{% load static %}
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]><html class="lt-ie9 lt-ie8"><![endif]-->
+<!--[if IE 8]><html class="lt-ie9"><![endif]-->
+<!--[if gt IE 8]><!--><html><!--<![endif]-->
+<head>
+<title>DreamzBank</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="{% static 'css/foundation.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/superfish.css' %}">
+<link rel="stylesheet" href="{% static 'css/stylesheet.css' %}">
+<link rel="stylesheet" href="{% static 'js/slider/flexslider.css' %}">
+<link rel="stylesheet" href="{% static 'js/slider/flexcar.css' %}">
+<link href='http://fonts.googleapis.com/css?family=Quando' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,300|Droid+Serif:400,300' rel='stylesheet' type='text/css'>
+<script src="{% static 'js/vendor/custom.modernizr.js' %}"></script>
+<script>
+Modernizr.load({
+    // test if browser understands media queries
+    test: Modernizr.mq('only all'),
+    // if not load ie8-grid
+    nope: 'css/ie8-grid-foundation-4.css'
+});
+</script>
+<!--[if lt IE 9]>
+<link rel="stylesheet" href="{% static 'css/ie-fixes.css' %}">
+<![endif]-->
+</head>
+<body>
+<div class="wrapper">
+  <div class="header">
+    <div class="row">
+      <div class="columns large-12  header-inner"> <a href="{% url 'index' %}"><img src="{% static 'images/logo.png' %}" alt="" class="logo"></a> </div>
+      <div class="columns large-12">
+        <nav>
+          <section>
+            <ul class="sf-menu large-12">
+              <li class="active"><a href="{% url 'index' %}">Home</a></li>
+              <li><a href="{% url 'about' %}">About us</a></li>
+              <li class="has-dropdown"><a href="{% url 'services' %}">Services</a>
+                <ul class="dropdown">
+                  <li class="has-dropdown"><a href="#">Dropdown Level 1a</a>
+                    <ul class="dropdown">
+                      <li><a href="#">Dropdown Level 2a</a></li>
+                      <li><a href="#">Dropdown Level 2b</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#">Dropdown Level 1b</a></li>
+                  <li><a href="#">Dropdown Level 1c</a></li>
+                  <li><a href="#">Dropdown Level 1d</a></li>
+                  <li><a href="#">See all &rarr;</a></li>
+                </ul>
+              </li>
+              <li><a href="{% url 'contact' %}">Contact Us</a></li>
+              <li class="has-dropdown"><a>Branches</a>
+                <ul class="dropdown">
+                  <li class="has-dropdown"><a href="https://en.wikipedia.org/wiki/Alappuzha_district">Alappuzha</a>
+                  </li>
+                  <li><a href="https://en.wikipedia.org/wiki/Ernakulam_district">Ernakulam</a></li>
+                  <li><a href="https://en.wikipedia.org/wiki/Idukki_district">Idukki</a></li>
+                  <li><a href="https://en.wikipedia.org/wiki/Kannur_district">Kannur</a></li>
+                  <li><a href="https://en.wikipedia.org/wiki/Kasaragod_district">Kasaragod</a></li>
+                  <li><a href="https://en.wikipedia.org/wiki/Kollam_district">Kollam</a></li>
+                  <li><a href="https://en.wikipedia.org/wiki/Kottayam_district">Kottayam</a></li>
+                  <li><a href="https://en.wikipedia.org/wiki/Kozhikode_district">Kozhikode</a></li>
+                  <li><a href="https://en.wikipedia.org/wiki/Malappuram_district">Malappuram</a></li>
+                  <li><a href="https://en.wikipedia.org/wiki/Palakkad_district">Palakkad</a></li>
+                  <li><a href="https://en.wikipedia.org/wiki/Pathanamthitta_district">Pathanamthitta</a></li>
+                  <li><a href="https://en.wikipedia.org/wiki/Thrissur_district">Thrissur</a></li>
+                  <li><a href="https://en.wikipedia.org/wiki/Thiruvananthapuram_district">Thiruvananthapuram</a></li>
+                  <li><a href="https://en.wikipedia.org/wiki/Wayanad_district">Wayanad</a></li>
+                </ul>
+              </li>
+              <li><a href="{% url 'login' %}">Login</a></li>
+              <li><a href="{% url 'register' %}">Register</a></li>
+            </ul>
+          </section>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <div>
+    <form id="form">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="dob">Date of Birth:</label>
+      <input type="date" id="dob" name="dob" required>
+
+      <label for="age">Age:</label>
+      <input type="number" id="age" name="age" required>
+
+      <label for="gender">Gender:</label>
+      <select id="gender" name="gender" required>
+        <option value="">Select Gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+      </select>
+
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="address">Address:</label>
+      <textarea id="address" name="address" required></textarea>
+
+      <label for="district">District:</label>
+      <select id="district" name="district" required>
+        <option value="">Select Disctrict</option>
+      </select>
+
+      <label for="branch">Branch:</label>
+      <select id="branch" name="branch" required>
+        <option value="">Select Branch</option>
+        <!-- Add options dynamically based on the selected district using JavaScript -->
+      </select>
+
+      <label for="account-type">Account Type:</label>
+      <select id="account-type" name="account-type" required>
+        <option value="">Select Account Type</option>
+        <option value="savings">Savings Account</option>
+        <option value="current">Current Account</option>
+        <!-- Add more account types as needed -->
+      </select>
+
+      <label>Materials Provided:</label>
+      <div>
+        <input type="checkbox" id="debit-card" name="materials" value="debit-card">
+        <label for="debit-card">Debit Card</label>
+      </div>
+      <div>
+        <input type="checkbox" id="credit-card" name="materials" value="credit-card">
+        <label for="credit-card">Credit Card</label>
+      </div>
+      <div>
+        <input type="checkbox" id="cheque-book" name="materials" value="cheque-book">
+        <label for="cheque-book">Cheque Book</label>
+      </div>
+      <!-- Add more materials checkboxes as needed -->
+
+      <button type="submit">Submit</button>
+      <button type="button" onclick="window.location.href='{% url 'logout' %}'">Logout</button>
+    </form>
+
+  </div>
+</div>
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/hoverIntent.js' %}"></script>
+<script src="{% static 'js/superfish.js' %}"></script>
+<script src="{% static 'js/slider/jquery.flexslider.js' %}"></script>
+<script>
+Modernizr.load({
+    test: Modernizr.placeholder,
+    nope: 'js/placeholder.min.js'
+});
+
+function goToNewPage() {
+    if (document.getElementById('target').value) {
+        window.location.href = document.getElementById('target').value;
+    }
+}
+</script>
+<script>
+$(document).ready(function () {
+    $('ul.sf-menu').superfish({
+        animation: {
+            height: 'show'
+        },
+        delay: 400
+    });
+    $("img.scrollToTop").click(function () {
+        $("html, body").animate({
+            scrollTop: 0
+        }, "slow");
+    });
+    $('.flexslider').flexslider();
+    $('.flexcar').flexslider();
+});
+</script>
+<script>
+document.getElementById("form").addEventListener("submit", function(event) {
+  event.preventDefault(); // Prevent form submission
+
+  // Hide the form content
+  var form = document.getElementById("form");
+  form.style.display = "none";
+
+  // Create the message div dynamically
+  var messageDiv = document.createElement("div");
+  messageDiv.id = "message";
+  messageDiv.textContent = "Form application accepted";
+
+// Create the link for returning to the home page
+var homeLink = document.createElement("a");
+homeLink.href = "{% url 'index' %}"; // Replace "index.html" with the appropriate URL for your home page
+homeLink.textContent = "Return to Home Page";
+
+// Append the link to the message div
+messageDiv.appendChild(homeLink);
+
+  // Append the message div to the document body
+  document.body.appendChild(messageDiv);
+});
+
+
+ // Define branch options for each district
+  var branchOptions = {
+    alappuzha: [
+      { value: "alappuzha-branch1", label: "Branch 1 (Alappuzha Town)" },
+      { value: "alappuzha-branch2", label: "Branch 2 (Cherthala)" },
+      { value: "alappuzha-branch3", label: "Branch 3 (Ambalappuzha)" }
+    ],
+    ernakulam: [
+      { value: "ernakulam-branch1", label: "Branch 1 (Kochi)" },
+      { value: "ernakulam-branch2", label: "Branch 2 (Kakkanad)" },
+      { value: "ernakulam-branch3", label: "Branch 3 (Aluva)" }
+    ],
+    idukki: [
+      { value: "idukki-branch1", label: "Branch 1 (Thodupuzha)" },
+      { value: "idukki-branch2", label: "Branch 2 (Munnar)" },
+      { value: "idukki-branch3", label: "Branch 3 (Adimali)" }
+    ],
+    kannur: [
+      { value: "kannur-branch1", label: "Branch 1 (Kannur Town)" },
+      { value: "kannur-branch2", label: "Branch 2 (Thalassery)" },
+      { value: "kannur-branch3", label: "Branch 3 (Mattannur)" }
+    ],
+    kasaragod: [
+      { value: "kasaragod-branch1", label: "Branch 1 (Kasaragod Town)" },
+      { value: "kasaragod-branch2", label: "Branch 2 (Kanhangad)" },
+      { value: "kasaragod-branch3", label: "Branch 3 (Manjeshwaram)" }
+    ],
+    kollam: [
+      { value: "kollam-branch1", label: "Branch 1 (Kollam Town)" },
+      { value: "kollam-branch2", label: "Branch 2 (Punalur)" },
+      { value: "kollam-branch3", label: "Branch 3 (Karunagappally)" }
+    ],
+    kottayam: [
+      { value: "kottayam-branch1", label: "Branch 1 (Kottayam Town)" },
+      { value: "kottayam-branch2", label: "Branch 2 (Changanassery)" },
+      { value: "kottayam-branch3", label: "Branch 3 (Kanjirappally)" }
+    ],
+    kozhikode: [
+      { value: "kozhikode-branch1", label: "Branch 1 (Kozhikode City)" },
+      { value: "kozhikode-branch2", label: "Branch 2 (Vadakara)" },
+      { value: "kozhikode-branch3", label: "Branch 3 (Perambra)" }
+    ],
+    malappuram: [
+      { value: "malappuram-branch1", label: "Branch 1 (Malappuram Town)" },
+      { value: "malappuram-branch2", label: "Branch 2 (Manjeri)" },
+      { value: "malappuram-branch3", label: "Branch 3 (Tirur)" }
+    ],
+    palakkad: [
+      { value: "palakkad-branch1", label: "Branch 1 (Palakkad Town)" },
+      { value: "palakkad-branch2", label: "Branch 2 (Ottapalam)" },
+      { value: "palakkad-branch3", label: "Branch 3 (Chittur-Thathamangalam)" }
+    ],
+    pathanamthitta: [
+      { value: "pathanamthitta-branch1", label: "Branch 1 (Pathanamthitta Town)" },
+      { value: "pathanamthitta-branch2", label: "Branch 2 (Adoor)" },
+      { value: "pathanamthitta-branch3", label: "Branch 3 (Ranni)" }
+    ],
+    thrissur: [
+      { value: "thrissur-branch1", label: "Branch 1 (Thrissur City)" },
+      { value: "thrissur-branch2", label: "Branch 2 (Kodungallur)" },
+      { value: "thrissur-branch3", label: "Branch 3 (Chalakudy)" }
+    ],
+    thiruvananthapuram: [
+      { value: "thiruvananthapuram-branch1", label: "Branch 1 (Thiruvananthapuram City)" },
+      { value: "thiruvananthapuram-branch2", label: "Branch 2 (Neyyattinkara)" },
+      { value: "thiruvananthapuram-branch3", label: "Branch 3 (Attingal)" }
+    ],
+    wayanad: [
+      { value: "wayanad-branch1", label: "Branch 1 (Kalpetta)" },
+      { value: "wayanad-branch2", label: "Branch 2 (Mananthavady)" },
+      { value: "wayanad-branch3", label: "Branch 3 (Sulthan Bathery)" }
+    ]
+  };
+
+  var districtDropdown = document.getElementById("district");
+  var branchDropdown = document.getElementById("branch");
+
+  // Add options to the district dropdown
+  var districts = Object.keys(branchOptions);
+  districts.forEach(function(district) {
+    var option = document.createElement("option");
+    option.value = district;
+    option.text = district.charAt(0).toUpperCase() + district.slice(1);
+    districtDropdown.add(option);
+  });
+
+  // Update branch options when district selection changes
+  districtDropdown.addEventListener("change", function() {
+    var selectedDistrict = this.value;
+
+    // Clear existing branch options
+    branchDropdown.innerHTML = "<option value=''>Select Branch</option>";
+
+    // Add branch options for the selected district
+    if (selectedDistrict) {
+      var branches = branchOptions[selectedDistrict];
+      branches.forEach(function(branch) {
+        var option = document.createElement("option");
+        option.value = branch.value;
+        option.text = branch.label;
+        branchDropdown.add(option);
+      });
+    }
+  });
+</script>
+</body>
+</html>

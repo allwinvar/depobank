@@ -1,0 +1,146 @@
+{% load static %}
+<!--[if gt IE 8]><!--><html><!--<![endif]-->
+<head>
+<title>DreamzBank</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="{% static 'css/foundation.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/superfish.css' %}">
+<link rel="stylesheet" href="{% static 'css/stylesheet.css' %}">
+<link rel="stylesheet" href="{% static 'js/slider/flexslider.css' %}">
+<link rel="stylesheet" href="{% static 'js/slider/flexcar.css' %}">
+<link href='http://fonts.googleapis.com/css?family=Quando' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,300|Droid+Serif:400,300' rel='stylesheet' type='text/css'>
+<script src="{% static 'js/vendor/custom.modernizr.js' %}"></script>
+<script>
+Modernizr.load({
+    // test if browser understands media queries
+    test: Modernizr.mq('only all'),
+    // if not load ie8-grid
+    nope: 'css/ie8-grid-foundation-4.css'
+});
+</script>
+<!--[if lt IE 9]>
+<link rel="stylesheet" href="{% static 'css/ie-fixes.css' %}">
+<![endif]-->
+</head>
+<body>
+<div class="wrapper">
+  <div class="header">
+    <div class="row">
+      <div class="columns large-12  header-inner"> <a href="{% url 'index' %}"><img src="{% static 'images/logo.png' %}" alt="" class="logo"></a> </div>
+      <div class="columns large-12">
+        <nav>
+          <section>
+            <ul class="sf-menu large-12">
+              <li class="active"><a href="{% url 'index' %}">Home</a></li>
+              <li><a href="{% url 'about' %}">About us</a></li>
+              <li class="has-dropdown"><a href="{% url 'services' %}">Services</a>
+                <ul class="dropdown">
+                  <li class="has-dropdown"><a href="#">Dropdown Level 1a</a>
+                    <ul class="dropdown">
+                      <li><a href="#">Dropdown Level 2a</a></li>
+                      <li><a href="#">Dropdown Level 2b</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#">Dropdown Level 1b</a></li>
+                  <li><a href="#">Dropdown Level 1c</a></li>
+                  <li><a href="#">Dropdown Level 1d</a></li>
+                  <li><a href="#">See all &rarr;</a></li>
+                </ul>
+              </li>
+              <li><a href="{% url 'contact' %}">Contact Us</a></li>
+              <li class="has-dropdown"><a>Branches</a>
+                <ul class="dropdown">
+                  <li class="has-dropdown"><a href="https://en.wikipedia.org/wiki/Alappuzha_district">Alappuzha</a>
+                  </li>
+                  <li><a href="https://en.wikipedia.org/wiki/Ernakulam_district">Ernakulam</a></li>
+                  <li><a href="https://en.wikipedia.org/wiki/Idukki_district">Idukki</a></li>
+                  <li><a href="https://en.wikipedia.org/wiki/Kannur_district">Kannur</a></li>
+                  <li><a href="https://en.wikipedia.org/wiki/Kasaragod_district">Kasaragod</a></li>
+                  <li><a href="https://en.wikipedia.org/wiki/Kollam_district">Kollam</a></li>
+                  <li><a href="https://en.wikipedia.org/wiki/Kottayam_district">Kottayam</a></li>
+                  <li><a href="https://en.wikipedia.org/wiki/Kozhikode_district">Kozhikode</a></li>
+                  <li><a href="https://en.wikipedia.org/wiki/Malappuram_district">Malappuram</a></li>
+                  <li><a href="https://en.wikipedia.org/wiki/Palakkad_district">Palakkad</a></li>
+                  <li><a href="https://en.wikipedia.org/wiki/Pathanamthitta_district">Pathanamthitta</a></li>
+                  <li><a href="https://en.wikipedia.org/wiki/Thrissur_district">Thrissur</a></li>
+                  <li><a href="https://en.wikipedia.org/wiki/Thiruvananthapuram_district">Thiruvananthapuram</a></li>
+                  <li><a href="https://en.wikipedia.org/wiki/Wayanad_district">Wayanad</a></li>
+                </ul>
+              </li>
+              <li><a href="{% url 'login' %}">Login</a></li>
+              <li><a href="{% url 'register' %}">Register</a></li>
+            </ul>
+          </section>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/hoverIntent.js' %}"></script>
+<script src="{% static 'js/superfish.js' %}"></script>
+<script src="{% static 'js/slider/jquery.flexslider.js' %}"></script>
+<script>
+Modernizr.load({
+    test: Modernizr.placeholder,
+    nope: 'js/placeholder.min.js'
+});
+
+function goToNewPage() {
+    if (document.getElementById('target').value) {
+        window.location.href = document.getElementById('target').value;
+    }
+}
+</script>
+<script>
+$(document).ready(function () {
+    $('ul.sf-menu').superfish({
+        animation: {
+            height: 'show'
+        },
+        delay: 400
+    });
+    $("img.scrollToTop").click(function () {
+        $("html, body").animate({
+            scrollTop: 0
+        }, "slow");
+    });
+    $('.flexslider').flexslider();
+    $('.flexcar').flexslider();
+});
+</script>
+<script>
+    // Create the button element
+    var button = document.createElement("button");
+    button.textContent = "Upload KYC";
+
+    // Apply styles to the button
+    button.style.display = "inline-block";
+    button.style.padding = "10px 20px";
+    button.style.backgroundColor = "#4CAF50";
+    button.style.color = "white";
+    button.style.textAlign = "center";
+    button.style.textDecoration = "none";
+    button.style.fontSize = "16px";
+    button.style.borderRadius = "5px";
+    button.style.border = "none";
+
+    // Add hover effect
+    button.addEventListener("mouseover", function() {
+      button.style.backgroundColor = "#45a049";
+    });
+
+    button.addEventListener("mouseout", function() {
+      button.style.backgroundColor = "#4CAF50";
+    });
+
+ // Add click event listener to navigate to index.html
+    button.addEventListener("click", function() {
+      window.location.href = "{% url 'apply' %}";
+    });
+    // Append the button after the navbar
+    var nav = document.querySelector("nav");
+    nav.insertAdjacentElement("afterend", button);
+  </script>
+</body>
