@@ -87,6 +87,12 @@ Modernizr.load({
         {% csrf_token %}
         <input name="username" type="text" placeholder="Username" required>
         <input name="password" type="password" placeholder="Password" required>
+        <!-- Error message display -->
+        {% if error %}
+        <div class="error-message">
+        {{ error }}
+        </div>
+        {% endif %}
         <input type="submit" value="Submit">
         <a href="{% url 'register' %}" id="registerLink">Register</a>
       </form>

@@ -111,36 +111,47 @@ $(document).ready(function () {
 });
 </script>
 <script>
-    // Create the button element
-    var button = document.createElement("button");
-    button.textContent = "Upload KYC";
+function createButton(text, color, url) {
+  // Create the button element
+  var button = document.createElement("button");
+  button.textContent = text;
 
-    // Apply styles to the button
-    button.style.display = "inline-block";
-    button.style.padding = "10px 20px";
-    button.style.backgroundColor = "#4CAF50";
-    button.style.color = "white";
-    button.style.textAlign = "center";
-    button.style.textDecoration = "none";
-    button.style.fontSize = "16px";
-    button.style.borderRadius = "5px";
-    button.style.border = "none";
+  // Apply styles to the button
+  button.style.display = "inline-block";
+  button.style.padding = "10px 20px";
+  button.style.backgroundColor = color;
+  button.style.color = "white";
+  button.style.textAlign = "center";
+  button.style.textDecoration = "none";
+  button.style.fontSize = "16px";
+  button.style.borderRadius = "5px";
+  button.style.border = "none";
 
-    // Add hover effect
-    button.addEventListener("mouseover", function() {
-      button.style.backgroundColor = "#45a049";
-    });
+  // Add hover effect
+  button.addEventListener("mouseover", function() {
+    button.style.backgroundColor = "#45a049";
+  });
 
-    button.addEventListener("mouseout", function() {
-      button.style.backgroundColor = "#4CAF50";
-    });
+  button.addEventListener("mouseout", function() {
+    button.style.backgroundColor = color;
+  });
 
- // Add click event listener to navigate to index.html
-    button.addEventListener("click", function() {
-      window.location.href = "{% url 'apply' %}";
-    });
-    // Append the button after the navbar
-    var nav = document.querySelector("nav");
-    nav.insertAdjacentElement("afterend", button);
+  // Add click event listener to navigate to the specified URL
+  button.addEventListener("click", function() {
+    window.location.href = url;
+  });
+
+  // Append the button after the navbar
+  var nav = document.querySelector("nav");
+  nav.insertAdjacentElement("afterend", button);
+}
+// Create "Logout" button
+createButton("Logout", "red", "{% url 'logout' %}");
+
+// Create "Upload KYC" button
+createButton("Upload KYC", "#4CAF50", "{% url 'apply' %}");
+
+
+
   </script>
 </body>

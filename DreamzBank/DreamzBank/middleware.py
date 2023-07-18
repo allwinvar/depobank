@@ -7,6 +7,8 @@ class LoginRequiredMiddleware:
 
     def __call__(self, request):
         isLoggedIn = request.session.get('isLoggedIn', False)
+        #print("isLoggedIn:", isLoggedIn)  # Print the value of isLoggedIn
+        #print(request.session.items())  # Print session data
         if not isLoggedIn and request.path.startswith('/account/'):
             return redirect('login')  # Replace 'login' with your actual login URL name
         response = self.get_response(request)
