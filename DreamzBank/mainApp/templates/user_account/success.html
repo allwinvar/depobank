@@ -72,8 +72,8 @@ Modernizr.load({
                   <li><a href="https://en.wikipedia.org/wiki/Wayanad_district">Wayanad</a></li>
                 </ul>
               </li>
-              <li><a href="{% url 'login' %}">Login</a></li>
-              <li><a href="{% url 'register' %}">Register</a></li>
+
+              <li><a href="{% url 'logout' %}">Logout</a></li>
             </ul>
           </section>
         </nav>
@@ -81,22 +81,7 @@ Modernizr.load({
     </div>
   </div>
   <div>
-    <div id="registerPage">
-      <h2>Register</h2>
-      <form method="post">
-        {% csrf_token %}
-        <input type="text" placeholder="Username" name="username" required>
-        <input type="password" placeholder="Password" name="password"required>
-        <input type="password" placeholder="Confirm Password" name="confirm_password" required>
-        <!-- Error message display -->
-        {% if error %}
-        <div class="error-message">
-        {{ error }}
-        </div>
-        {% endif %}
-        <input type="submit" value="Submit" >
-      </form>
-    </div>
+      <h4>Your application is successfully accepted. go to <a href="{% url 'index' %}">Home</a></h4>
   </div>
 </div>
 <script src="{% static 'js/jquery.min.js' %}"></script>
@@ -131,6 +116,114 @@ $(document).ready(function () {
     $('.flexslider').flexslider();
     $('.flexcar').flexslider();
 });
+</script>
+<script>
+
+
+ // Define branch options for each district
+  var branchOptions = {
+    alappuzha: [
+      { value: "alappuzha-branch1", label: "Branch 1 (Alappuzha Town)" },
+      { value: "alappuzha-branch2", label: "Branch 2 (Cherthala)" },
+      { value: "alappuzha-branch3", label: "Branch 3 (Ambalappuzha)" }
+    ],
+    ernakulam: [
+      { value: "ernakulam-branch1", label: "Branch 1 (Kochi)" },
+      { value: "ernakulam-branch2", label: "Branch 2 (Kakkanad)" },
+      { value: "ernakulam-branch3", label: "Branch 3 (Aluva)" }
+    ],
+    idukki: [
+      { value: "idukki-branch1", label: "Branch 1 (Thodupuzha)" },
+      { value: "idukki-branch2", label: "Branch 2 (Munnar)" },
+      { value: "idukki-branch3", label: "Branch 3 (Adimali)" }
+    ],
+    kannur: [
+      { value: "kannur-branch1", label: "Branch 1 (Kannur Town)" },
+      { value: "kannur-branch2", label: "Branch 2 (Thalassery)" },
+      { value: "kannur-branch3", label: "Branch 3 (Mattannur)" }
+    ],
+    kasaragod: [
+      { value: "kasaragod-branch1", label: "Branch 1 (Kasaragod Town)" },
+      { value: "kasaragod-branch2", label: "Branch 2 (Kanhangad)" },
+      { value: "kasaragod-branch3", label: "Branch 3 (Manjeshwaram)" }
+    ],
+    kollam: [
+      { value: "kollam-branch1", label: "Branch 1 (Kollam Town)" },
+      { value: "kollam-branch2", label: "Branch 2 (Punalur)" },
+      { value: "kollam-branch3", label: "Branch 3 (Karunagappally)" }
+    ],
+    kottayam: [
+      { value: "kottayam-branch1", label: "Branch 1 (Kottayam Town)" },
+      { value: "kottayam-branch2", label: "Branch 2 (Changanassery)" },
+      { value: "kottayam-branch3", label: "Branch 3 (Kanjirappally)" }
+    ],
+    kozhikode: [
+      { value: "kozhikode-branch1", label: "Branch 1 (Kozhikode City)" },
+      { value: "kozhikode-branch2", label: "Branch 2 (Vadakara)" },
+      { value: "kozhikode-branch3", label: "Branch 3 (Perambra)" }
+    ],
+    malappuram: [
+      { value: "malappuram-branch1", label: "Branch 1 (Malappuram Town)" },
+      { value: "malappuram-branch2", label: "Branch 2 (Manjeri)" },
+      { value: "malappuram-branch3", label: "Branch 3 (Tirur)" }
+    ],
+    palakkad: [
+      { value: "palakkad-branch1", label: "Branch 1 (Palakkad Town)" },
+      { value: "palakkad-branch2", label: "Branch 2 (Ottapalam)" },
+      { value: "palakkad-branch3", label: "Branch 3 (Chittur-Thathamangalam)" }
+    ],
+    pathanamthitta: [
+      { value: "pathanamthitta-branch1", label: "Branch 1 (Pathanamthitta Town)" },
+      { value: "pathanamthitta-branch2", label: "Branch 2 (Adoor)" },
+      { value: "pathanamthitta-branch3", label: "Branch 3 (Ranni)" }
+    ],
+    thrissur: [
+      { value: "thrissur-branch1", label: "Branch 1 (Thrissur City)" },
+      { value: "thrissur-branch2", label: "Branch 2 (Kodungallur)" },
+      { value: "thrissur-branch3", label: "Branch 3 (Chalakudy)" }
+    ],
+    thiruvananthapuram: [
+      { value: "thiruvananthapuram-branch1", label: "Branch 1 (Thiruvananthapuram City)" },
+      { value: "thiruvananthapuram-branch2", label: "Branch 2 (Neyyattinkara)" },
+      { value: "thiruvananthapuram-branch3", label: "Branch 3 (Attingal)" }
+    ],
+    wayanad: [
+      { value: "wayanad-branch1", label: "Branch 1 (Kalpetta)" },
+      { value: "wayanad-branch2", label: "Branch 2 (Mananthavady)" },
+      { value: "wayanad-branch3", label: "Branch 3 (Sulthan Bathery)" }
+    ]
+  };
+
+  var districtDropdown = document.getElementById("district");
+  var branchDropdown = document.getElementById("branch");
+
+  // Add options to the district dropdown
+  var districts = Object.keys(branchOptions);
+  districts.forEach(function(district) {
+    var option = document.createElement("option");
+    option.value = district;
+    option.text = district.charAt(0).toUpperCase() + district.slice(1);
+    districtDropdown.add(option);
+  });
+
+  // Update branch options when district selection changes
+  districtDropdown.addEventListener("change", function() {
+    var selectedDistrict = this.value;
+
+    // Clear existing branch options
+    branchDropdown.innerHTML = "<option value=''>Select Branch</option>";
+
+    // Add branch options for the selected district
+    if (selectedDistrict) {
+      var branches = branchOptions[selectedDistrict];
+      branches.forEach(function(branch) {
+        var option = document.createElement("option");
+        option.value = branch.value;
+        option.text = branch.label;
+        branchDropdown.add(option);
+      });
+    }
+  });
 </script>
 </body>
 </html>

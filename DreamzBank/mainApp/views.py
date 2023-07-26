@@ -70,6 +70,8 @@ def logout(request):
     request.session.flush()
     return render(request, 'index.html')
 def apply(request):
+    if request.method == 'POST':
+        return render(request, 'user_account/success.html')
     return render(request, 'user_account/apply_form.html')
 def dashboard(request):
     return render(request, 'user_account/dashboard.html')

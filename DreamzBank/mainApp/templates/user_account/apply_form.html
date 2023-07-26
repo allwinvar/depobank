@@ -81,7 +81,8 @@ Modernizr.load({
     </div>
   </div>
   <div>
-    <form id="form">
+    <form id="form" method="POST" >
+      {% csrf_token %}
       <label for="name">Name:</label>
       <input type="text" id="name" name="name" required>
 
@@ -182,29 +183,6 @@ $(document).ready(function () {
 });
 </script>
 <script>
-document.getElementById("form").addEventListener("submit", function(event) {
-  event.preventDefault(); // Prevent form submission
-
-  // Hide the form content
-  var form = document.getElementById("form");
-  form.style.display = "none";
-
-  // Create the message div dynamically
-  var messageDiv = document.createElement("div");
-  messageDiv.id = "message";
-  messageDiv.textContent = "Form application accepted";
-
-// Create the link for returning to the home page
-var homeLink = document.createElement("a");
-homeLink.href = "{% url 'index' %}"; // Replace "index.html" with the appropriate URL for your home page
-homeLink.textContent = "Return to Home Page";
-
-// Append the link to the message div
-messageDiv.appendChild(homeLink);
-
-  // Append the message div to the document body
-  document.body.appendChild(messageDiv);
-});
 
 
  // Define branch options for each district
