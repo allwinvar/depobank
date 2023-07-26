@@ -145,8 +145,6 @@ function createButton(text, color, url) {
   var nav = document.querySelector("nav");
   nav.insertAdjacentElement("afterend", button);
 }
-// Create "Logout" button
-createButton("Logout", "red", "{% url 'logout' %}");
 
 // Create "Upload KYC" button
 createButton("Upload KYC", "#4CAF50", "{% url 'apply' %}");
