@@ -68,8 +68,14 @@ Modernizr.load({
                   <li><a href="https://en.wikipedia.org/wiki/Wayanad_district">Wayanad</a></li>
                 </ul>
               </li>
-              <li><a href="{% url 'login' %}">Login</a></li>
-              <li><a href="{% url 'register' %}">Register</a></li>
+              {% if request.session.isLoggedIn %}
+              <li><a href="{% url 'logout' %}">Logout</a></li>
+              {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'register' %}">Register</a></li>
+              {% endif %}
+
+
             </ul>
           </section>
         </nav>
