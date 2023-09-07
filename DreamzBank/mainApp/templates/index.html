@@ -72,8 +72,12 @@ Modernizr.load({
                   <li><a href="https://en.wikipedia.org/wiki/Wayanad_district">Wayanad</a></li>
                 </ul>
               </li>
-              <li><a href="{% url 'login' %}">Login</a></li>
-              <li><a href="{% url 'register' %}">Register</a></li>
+               {% if request.session.isLoggedIn %}
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'register' %}">Register</a></li>
+            {% endif %}
             </ul>
           </section>
         </nav>
@@ -265,37 +269,49 @@ $(document).ready(function () {
 });
 </script>
 <script>
-    // Create the button element
-    var button = document.createElement("button");
-    button.textContent = "Login to Account";
+function createButton(text, color, url) {
+  // Create the button element
+  var button = document.createElement("button");
+  button.textContent = text;
 
-    // Apply styles to the button
-    button.style.display = "inline-block";
-    button.style.padding = "10px 20px";
-    button.style.backgroundColor = "#4CAF50";
-    button.style.color = "white";
-    button.style.textAlign = "center";
-    button.style.textDecoration = "none";
-    button.style.fontSize = "16px";
-    button.style.borderRadius = "5px";
-    button.style.border = "none";
+  // Apply styles to the button
+  button.style.display = "inline-block";
+  button.style.padding = "10px 20px";
+  button.style.backgroundColor = color;
+  button.style.color = "white";
+  button.style.textAlign = "center";
+  button.style.textDecoration = "none";
+  button.style.fontSize = "16px";
+  button.style.borderRadius = "5px";
+  button.style.border = "none";
 
-    // Add hover effect
-    button.addEventListener("mouseover", function() {
-      button.style.backgroundColor = "#45a049";
-    });
+  // Add hover effect
+  button.addEventListener("mouseover", function() {
+    button.style.backgroundColor = "#45a049";
+  });
 
-    button.addEventListener("mouseout", function() {
-      button.style.backgroundColor = "#4CAF50";
-    });
+  button.addEventListener("mouseout", function() {
+    button.style.backgroundColor = color;
+  });
 
- // Add click event listener to navigate to index.html
-    button.addEventListener("click", function() {
-      window.location.href = "{% url 'login' %}";
-    });
-    // Append the button after the navbar
-    var nav = document.querySelector("nav");
-    nav.insertAdjacentElement("afterend", button);
-  </script>
+  // Add click event listener to navigate to the specified URL
+  button.addEventListener("click", function() {
+    window.location.href = url;
+  });
+
+  // Append the button after the navbar
+  var nav = document.querySelector("nav");
+  nav.insertAdjacentElement("afterend", button);
+}
+
+// Apply Jinja2 template tags to conditionally create login or logout buttons
+{% if request.session.isLoggedIn %}
+  // Logout button for authenticated users
+  createButton("Logout", "#FF0000", "{% url 'logout' %}");
+{% else %}
+  // Login button for non-authenticated users
+  createButton("Login to Account", "#4CAF50", "{% url 'login' %}");
+{% endif %}
+</script>
 </body>
 </html>
