@@ -306,8 +306,7 @@ function createButton(text, color, url) {
 
 // Apply Jinja2 template tags to conditionally create login or logout buttons
 {% if request.session.isLoggedIn %}
-  // Logout button & Dashboard button for authenticated users
-  createButton("Logout", "#FF0000", "{% url 'logout' %}");
+  //Dashboard button for authenticated users
   createButton("Dashboard", "#4CAF50", "{% url 'dashboard' %}");
 
 {% else %}
